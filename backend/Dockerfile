@@ -17,7 +17,7 @@ FROM eclipse-temurin:11-jdk-alpine
 WORKDIR /app
 
 # Copy local code to the container image.
-COPY . ./
+COPY --from=build /target/dsvendas-0.0.1-SNAPSHOT.jar app.jar
 
 # Build the app.
 RUN ./mvnw -DoutputFile=target/mvn-dependency-list.log -B -DskipTests clean dependency:list install
